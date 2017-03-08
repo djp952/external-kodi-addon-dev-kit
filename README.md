@@ -1,3 +1,3 @@
-#KODI ADDON DEV KIT 16.1-Jarvis
+#KODI ADDON DEV KIT 17.0-Krypton
 [https://kodi.tv/](https://kodi.tv/)   
  
