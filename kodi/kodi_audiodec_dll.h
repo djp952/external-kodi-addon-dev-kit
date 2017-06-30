@@ -48,13 +48,15 @@ extern "C"
   bool DeInit(void* context);
 
   // function to export the above structure to XBMC
-  void __declspec(dllexport) get_addon(struct AudioDecoder* pScr)
+  void __declspec(dllexport) get_addon(void* ptr)
   {
-    pScr->Init = Init;
-    pScr->ReadPCM = ReadPCM;
-    pScr->Seek = Seek;
-    pScr->ReadTag = ReadTag;
-    pScr->TrackCount = TrackCount;
-    pScr->DeInit = DeInit;
+    AddonInstance_AudioDecoder* pScr = static_cast<AddonInstance_AudioDecoder*>(ptr);
+
+    pScr->toAddon.Init = Init;
+    pScr->toAddon.ReadPCM = ReadPCM;
+    pScr->toAddon.Seek = Seek;
+    pScr->toAddon.ReadTag = ReadTag;
+    pScr->toAddon.TrackCount = TrackCount;
+    pScr->toAddon.DeInit = DeInit;
   };
 };

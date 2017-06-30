@@ -1,7 +1,6 @@
 #pragma once
-
 /*
- *      Copyright (C) 2005-2015 Team Kodi
+ *      Copyright (C) 2017 Team Kodi
  *      http://kodi.tv
  *
  *  This Program is free software; you can redistribute it and/or modify
@@ -20,21 +19,15 @@
  *
  */
 
-#include "AddonBase.h"
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-  ADDON_STATUS __declspec(dllexport) ADDON_Create(void *callbacks, void* props);
-  void         __declspec(dllexport) ADDON_Destroy();
-  ADDON_STATUS __declspec(dllexport) ADDON_GetStatus();
-  ADDON_STATUS __declspec(dllexport) ADDON_SetSetting(const char *settingName, const void *settingValue);
-  __declspec(dllexport) const char* ADDON_GetTypeVersion(int type)
-  {
-    return kodi::addon::GetTypeVersion(type);
-  }
-
-#ifdef __cplusplus
+enum STREAMCODEC_PROFILE
+{
+  CodecProfileUnknown = 0,
+  CodecProfileNotNeeded,
+  H264CodecProfileBaseline,
+  H264CodecProfileMain,
+  H264CodecProfileExtended,
+  H264CodecProfileHigh,
+  H264CodecProfileHigh10,
+  H264CodecProfileHigh422,
+  H264CodecProfileHigh444Predictive
 };
-#endif

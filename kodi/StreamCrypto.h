@@ -1,7 +1,6 @@
 #pragma once
-
 /*
- *      Copyright (C) 2005-2015 Team Kodi
+ *      Copyright (C) 2017 Team Kodi
  *      http://kodi.tv
  *
  *  This Program is free software; you can redistribute it and/or modify
@@ -20,21 +19,15 @@
  *
  */
 
-#include "AddonBase.h"
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-  ADDON_STATUS __declspec(dllexport) ADDON_Create(void *callbacks, void* props);
-  void         __declspec(dllexport) ADDON_Destroy();
-  ADDON_STATUS __declspec(dllexport) ADDON_GetStatus();
-  ADDON_STATUS __declspec(dllexport) ADDON_SetSetting(const char *settingName, const void *settingValue);
-  __declspec(dllexport) const char* ADDON_GetTypeVersion(int type)
+typedef struct CRYPTO_INFO
+{
+  enum CRYPTO_KEY_SYSTEM : uint16_t
   {
-    return kodi::addon::GetTypeVersion(type);
-  }
-
-#ifdef __cplusplus
-};
-#endif
+    CRYPTO_KEY_SYSTEM_NONE = 0,
+    CRYPTO_KEY_SYSTEM_WIDEVINE,
+    CRYPTO_KEY_SYSTEM_PLAYREADY,
+    CRYPTO_KEY_SYSTEM_COUNT
+  } m_CryptoKeySystem;                 /*!< @brief keysystem for encrypted media, KEY_SYSTEM_NONE for unencrypted media */
+  const char *m_CryptoSessionId;       /*!< @brief The crypto session key id */
+  uint16_t m_CryptoSessionIdSize;      /*!< @brief The size of the crypto session key id */
+} CRYPTO_INFO;

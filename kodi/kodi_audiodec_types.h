@@ -34,12 +34,17 @@ extern "C"
     int dummy;
   };
 
-  struct AUDIODEC_PROPS
+  typedef struct AddonProps_AudioDecoder
   {
-    int dummy;
-  };
+    const char* mimetype;
+  } AddonProps_AudioDecoder;
 
-  struct AudioDecoder
+  typedef struct AddonToKodiFuncTable_AudioDecoder
+  {
+    KODI_HANDLE kodiInstance;
+  } AddonToKodiFuncTable_AudioDecoder;
+
+  typedef struct KodiToAddonFuncTable_AudioDecoder
   {
     //! \brief Initialize a decoder
     //! \param file The file to read
@@ -97,5 +102,12 @@ extern "C"
     //! \return True on success, false on failure
     //! \sa ICodec::DeInit
     bool (__cdecl* DeInit)(void* context);
-  };
+  } KodiToAddonFuncTable_AudioDecoder;
+
+  typedef struct AddonInstance_AudioDecoder
+  {
+    AddonProps_AudioDecoder props;
+    AddonToKodiFuncTable_AudioDecoder toKodi;
+    KodiToAddonFuncTable_AudioDecoder toAddon;
+  } AddonInstance_AudioDecoder;
 }
